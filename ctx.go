@@ -161,6 +161,8 @@ type Context interface {
 	ResponseWriter // 处理返回
 	StoreContainer // cache
 	RequestId() string
+	FinalTargetServer()string
+	RetryTargetServers()string
 }
 
 type ContextBeforeMatch interface {
