@@ -1,6 +1,9 @@
 package goku_plugin
 
-import "time"
+import (
+	"strings"
+	"time"
+)
 
 type Logger interface {
 	Log(string)
@@ -17,6 +20,31 @@ const (
 	PeriodHour
 )
 
+func ParsePeriod(period string)LogPeriod  {
+	 
+	switch strings.ToLower( period ){
+	case "hour":
+		return PeriodHour
+	case "day":
+		return PeriodDay
+	case "month":
+		return PeriodMonth
+	default:
+		return PeriodHour
+	}
+}
+func (p LogPeriod) String() string {
+	switch p {
+	case PeriodMonth:
+		return "month"
+	case PeriodDay:
+		return "day"
+	case PeriodHour:
+		return "hour"
+	default:
+		return "unknown"
+	}
+}
 func (p LogPeriod) Format() string {
 	t := time.Time{}
 	t.Month()
