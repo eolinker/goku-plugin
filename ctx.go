@@ -109,6 +109,7 @@ type Request interface {
 	CookieWriter
 	Body
 	Querys() url.Values
+	TargetServer() string
 }
 
 // 读取转发结果的response
