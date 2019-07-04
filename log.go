@@ -21,7 +21,7 @@ const (
 )
 
 func ParsePeriod(period string)LogPeriod  {
-	 
+
 	switch strings.ToLower( period ){
 	case "hour":
 		return PeriodHour
