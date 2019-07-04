@@ -85,6 +85,7 @@ type RequestData interface {
 	RequestURI() string
 	Host() string
 	RemoteAddr() string
+	Proto() string
 }
 
 //type RequestGet interface {
