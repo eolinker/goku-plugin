@@ -110,6 +110,7 @@ type Request interface {
 	Body
 	Querys() url.Values
 	TargetServer() string
+	TargetURL() string
 }
 
 // 读取转发结果的response
