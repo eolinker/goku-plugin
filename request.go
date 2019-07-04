@@ -1,2 +1,0 @@
-package goku_plugin
-
