@@ -116,6 +116,4 @@ type Redis interface {
 	Cmdable
 	Pipeline() Pipeliner
 	Pipelined(fn func(Pipeliner) error) ([]Cmder, error)
-
-
 }

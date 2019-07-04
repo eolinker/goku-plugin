@@ -95,6 +95,7 @@ type StringStructMapCmd interface {
 	Result() (map[string]struct{}, error)
 	String() string
 }
+
 //
 //type XMessage struct {
 //	ID     string
