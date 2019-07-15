@@ -34,3 +34,8 @@ func GetRedis() Redis {
 func GetRedisByName(name string) (Redis, bool) {
 	return _redisManager.Get(name)
 }
+
+const version  = "2019071517"
+func Version()  string {
+	return version
+}
