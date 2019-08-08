@@ -1,61 +1,121 @@
 package goku_plugin
 
-import (
-	"strings"
-	"time"
-)
+import "fmt"
 
 type Logger interface {
-	Log(string)
+	Debugf(format string, args ...interface{})
+	Infof(format string, args ...interface{})
+
+	Warnf(format string, args ...interface{})
+	Warningf(format string, args ...interface{})
+	Errorf(format string, args ...interface{})
+
+	Debug(args ...interface{})
+	Info(args ...interface{})
+
+	Warn(args ...interface{})
+	Warning(args ...interface{})
+	Error(args ...interface{})
 }
-type LoggerGeneral interface {
-	GenAccessLogger(dirName, fileName string, period LogPeriod) Logger
-}
 
-type LogPeriod int
 
-const (
-	PeriodMonth = iota
-	PeriodDay
-	PeriodHour
-)
-
-func ParsePeriod(period string)LogPeriod  {
-
-	switch strings.ToLower( period ){
-	case "hour":
-		return PeriodHour
-	case "day":
-		return PeriodDay
-	case "month":
-		return PeriodMonth
-	default:
-		return PeriodHour
+// Debug logs a message at level Debug on the standard _logger.
+func Debug(args ...interface{}) {
+	if _logger == nil{
+		printLevel("[DEBUG]",args...)
+		return
 	}
+	_logger.Debug(args...)
 }
-func (p LogPeriod) String() string {
-	switch p {
-	case PeriodMonth:
-		return "month"
-	case PeriodDay:
-		return "day"
-	case PeriodHour:
-		return "hour"
-	default:
-		return "unknown"
+
+
+// Info logs a message at level Info on the standard _logger.
+func Info(args ...interface{}) {
+	if _logger == nil{
+		printLevel("[INFO]",args...)
+		return
 	}
+	_logger.Info(args...)
 }
-func (p LogPeriod) Format() string {
-	t := time.Time{}
-	t.Month()
-	switch p {
-	case PeriodMonth:
-		return "2006-01-02-15"
-	case PeriodDay:
-		return "2006-01-02"
-	case PeriodHour:
-		return "2006-01-02-15"
-	default:
-		return "2006-01-02-15"
+
+// Warn logs a message at level Warn on the standard _logger.
+func Warn(args ...interface{}) {
+	if _logger == nil{
+		printLevel("[WARN]",args...)
+		return
 	}
+	_logger.Warn(args...)
+}
+
+// Warning logs a message at level Warn on the standard _logger.
+func Warning(args ...interface{}) {
+	if _logger == nil{
+		printLevel("[WARNING]",args...)
+		return
+	}
+	_logger.Warning(args...)
+}
+
+// Error logs a message at level Error on the standard _logger.
+func Error(args ...interface{}) {
+	if _logger == nil{
+		printLevel("[ERROR]",args...)
+		return
+	}
+	_logger.Error(args...)
+}
+
+// Debugf logs a message at level Debug on the standard _logger.
+func Debugf(format string, args ...interface{}) {
+	if _logger == nil{
+		printLevelF(format,"[DEBUG]",args...)
+		return
+	}
+	_logger.Debugf(format, args...)
+}
+
+// Infof logs a message at level Info on the standard _logger.
+func Infof(format string, args ...interface{}) {
+	if _logger == nil{
+		printLevelF(format,"[INFO]",args...)
+		return
+	}
+	_logger.Infof(format, args...)
+}
+
+// Warnf logs a message at level Warn on the standard _logger.
+func Warnf(format string, args ...interface{}) {
+	if _logger == nil{
+		printLevelF(format,"[WARN]",args...)
+		return
+	}
+	_logger.Warnf(format, args...)
+}
+
+// Warningf logs a message at level Warn on the standard _logger.
+func Warningf(format string, args ...interface{}) {
+	if _logger == nil{
+		printLevelF(format,"[WARNING]",args...)
+		return
+	}
+	_logger.Warningf(format, args...)
+}
+
+// Errorf logs a message at level Error on the standard _logger.
+func Errorf(format string, args ...interface{}) {
+	if _logger == nil{
+		printLevelF(format,"[ERROR]",args...)
+		return
+	}
+	_logger.Errorf(format, args...)
+}
+
+func printLevel(level string,args ...interface{}){
+	vs:=make([]interface{},0,len(args)+1)
+	vs = append(vs,level)
+	vs = append(vs,args...)
+	fmt.Println(vs...)
+}
+func printLevelF(format,level string,args ...interface{}){
+	fmt.Printf(level+format,args...)
 }
