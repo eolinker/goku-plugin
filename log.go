@@ -68,7 +68,7 @@ func Error(args ...interface{}) {
 // Debugf logs a message at level Debug on the standard _logger.
 func Debugf(format string, args ...interface{}) {
 	if _logger == nil{
-		printLevelF(format,"[DEBUG]",args...)
+		printLevelF(format,"[DEBUG] ",args...)
 		return
 	}
 	_logger.Debugf(format, args...)
@@ -77,7 +77,7 @@ func Debugf(format string, args ...interface{}) {
 // Infof logs a message at level Info on the standard _logger.
 func Infof(format string, args ...interface{}) {
 	if _logger == nil{
-		printLevelF(format,"[INFO]",args...)
+		printLevelF(format,"[INFO] ",args...)
 		return
 	}
 	_logger.Infof(format, args...)
@@ -86,7 +86,7 @@ func Infof(format string, args ...interface{}) {
 // Warnf logs a message at level Warn on the standard _logger.
 func Warnf(format string, args ...interface{}) {
 	if _logger == nil{
-		printLevelF(format,"[WARN]",args...)
+		printLevelF(format,"[WARN] ",args...)
 		return
 	}
 	_logger.Warnf(format, args...)
@@ -95,7 +95,7 @@ func Warnf(format string, args ...interface{}) {
 // Warningf logs a message at level Warn on the standard _logger.
 func Warningf(format string, args ...interface{}) {
 	if _logger == nil{
-		printLevelF(format,"[WARNING]",args...)
+		printLevelF(format,"[WARNING] ",args...)
 		return
 	}
 	_logger.Warningf(format, args...)
@@ -104,7 +104,7 @@ func Warningf(format string, args ...interface{}) {
 // Errorf logs a message at level Error on the standard _logger.
 func Errorf(format string, args ...interface{}) {
 	if _logger == nil{
-		printLevelF(format,"[ERROR]",args...)
+		printLevelF(format,"[ERROR] ",args...)
 		return
 	}
 	_logger.Errorf(format, args...)
@@ -117,5 +117,8 @@ func printLevel(level string,args ...interface{}){
 	fmt.Println(vs...)
 }
 func printLevelF(format,level string,args ...interface{}){
+	if format[len(format)-1] !='\n'{
+		format = format+"\n"
+	}
 	fmt.Printf(level+format,args...)
 }
