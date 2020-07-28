@@ -8,9 +8,9 @@ func InitLog(logger Logger){
 	_logger = logger
 }
 func SetRedisManager(manager RedisManager) {
-	if _redisManager != nil {
-		panic("repeat set RedisManager")
-	}
+// 	if _redisManager != nil {
+// 		panic("repeat set RedisManager")
+// 	}
 	_redisManager = manager
 }
 
