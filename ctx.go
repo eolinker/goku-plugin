@@ -123,9 +123,10 @@ type ResponseReader interface {
 
 // 请求基本接口信息
 type ContextApiInfo interface {
-	StrategyId() string
-	StrategyName() string
-	ApiID() int
+	ServiceId() string
+	Service()string
+	Version()string
+	Name()string
 }
 
 // 单存储
