@@ -14,7 +14,7 @@ type Cmder interface {
 type Cmd interface {
 	Val() interface{}
 	Result() (interface{}, error)
-	String() (string, error)
+	String() string
 	Int() (int, error)
 	Int64() (int64, error)
 	Uint64() (uint64, error)

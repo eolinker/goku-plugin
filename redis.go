@@ -2,8 +2,9 @@ package goku_plugin
 
 import "time"
 
-type Cmdable interface {
+type CmdAble interface {
 	Ping() StatusCmd
+
 	Del(keys ...string) IntCmd
 	Unlink(keys ...string) IntCmd
 	Dump(key string) StringCmd
@@ -53,8 +54,8 @@ type Cmdable interface {
 	HKeys(key string) StringSliceCmd
 	HLen(key string) IntCmd
 	HMGet(key string, fields ...string) SliceCmd
-	HMSet(key string, fields map[string]interface{}) StatusCmd
-	HSet(key, field string, value interface{}) BoolCmd
+	HMSet(key string, fields map[string]interface{}) BoolCmd
+	HSet(key, field string, value interface{}) IntCmd
 	HSetNX(key, field string, value interface{}) BoolCmd
 	HVals(key string) StringSliceCmd
 	BLPop(timeout time.Duration, keys ...string) StringSliceCmd
@@ -96,7 +97,7 @@ type Cmdable interface {
 }
 
 type StatefulCmdable interface {
-	Cmdable
+	CmdAble
 	Auth(password string) StatusCmd
 	Select(index int) StatusCmd
 	SwapDB(index1, index2 int) StatusCmd
@@ -113,7 +114,7 @@ type Pipeliner interface {
 }
 
 type Redis interface {
-	Cmdable
+	CmdAble
 	Pipeline() Pipeliner
 	Pipelined(fn func(Pipeliner) error) ([]Cmder, error)
 }

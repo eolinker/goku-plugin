@@ -123,10 +123,13 @@ type ResponseReader interface {
 
 // 请求基本接口信息
 type ContextApiInfo interface {
-	ServiceId() string
-	Service()string
-	Version()string
-	Name()string
+	//ServiceId() string
+	//Service()string
+	//Version()string
+	//Name()string
+	StrategyId() string
+	StrategyName() string
+	ApiID() int
 }
 
 // 单存储
@@ -166,8 +169,8 @@ type Context interface {
 	ResponseWriter // 处理返回
 	StoreContainer // cache
 	RequestId() string
-	FinalTargetServer()string
-	RetryTargetServers()string
+	FinalTargetServer() string
+	RetryTargetServers() string
 }
 
 type ContextBeforeMatch interface {
